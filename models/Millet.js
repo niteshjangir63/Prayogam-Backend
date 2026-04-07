@@ -2,69 +2,49 @@ import mongoose from "mongoose";
 
 const milletSchema = new mongoose.Schema({
 
-  name:{
-    type:String,
-    required:true
-  },
+    nameEnglish: {
+        type: String,
+        required: true
+    },
 
-  description:{
-    type:String,
-    required:true
-  },
+    nameHindi: String,
 
-  category:{
-    type:String,
-    enum:[
-      "Ragi",
-      "Jowar",
-      "Bajra",
-      "Foxtail Millet",
-      "Little Millet",
-      "Kodo Millet",
-      "Barnyard Millet"
-    ]
-  },
+    type: String,
 
-  price:{
-    type:Number,
-    required:true
-  },
+    location: String,
 
-  quantity:{
-    type:Number,
-    required:true
-  },
+    price: {
+        type: Number,
+        required: true
+    },
 
-  unit:{
-    type:String,
-    default:"kg"
-  },
+    quantity: {
+        type: Number,
+        required: true
+    },
 
-  images:[
-    {
-      type:String
+    harvestDate: Date,
+
+    minOrder: Number,
+
+    description: String,
+
+    organic: {
+        type: Boolean,
+        default: false
+    },
+
+    photos: [
+        {
+            type: String
+        }
+    ],
+
+    farmer: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
     }
-  ],
 
-  location:{
-    type:String
-  },
+}, { timestamps: true });
 
-  organic:{
-    type:Boolean,
-    default:false
-  },
-
-  rating:{
-    type:Number,
-    default:0
-  },
-
-  farmer:{
-    type:mongoose.Schema.Types.ObjectId,
-    ref:"User"
-  }
-
-},{timestamps:true});
-
-export default mongoose.model("Millet",milletSchema);
+export default mongoose.model("Millet", milletSchema);
